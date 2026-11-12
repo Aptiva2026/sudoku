@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="数独">
+<meta name="theme-color" content="#f7f8fa">
+<title>数独 · Sudoku</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <button class="pill" id="btnNew" aria-label="新游戏">
+      <span id="diffLabel">简单</span>
+      <svg viewBox="0 0 24 24" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-val" id="timer">00:00</span>
+        <span class="stat-key">用时</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val" id="mistakes">0</span>
+        <span class="stat-key">错误</span>
+      </div>
+    </div>
+    <button class="pill icon-only" id="btnPause" aria-label="暂停">
+      <svg viewBox="0 0 24 24" id="pauseIcon"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>
+    </button>
+  </header>
+
+  <main class="board-area">
+    <div class="board-shell">
+      <div class="board" id="board" role="grid" aria-label="数独棋盘"></div>
+      <div class="veil" id="veil">
+        <div class="veil-card">
+          <div class="veil-title" id="veilTitle">已暂停</div>
+          <div class="veil-sub" id="veilSub">进度已保存</div>
+          <button class="cta" id="veilBtn">继续</button>
+        </div>
+      </div>
+      <canvas class="confetti" id="confetti"></canvas>
+      <div class="busy" id="busy"><i class="spinner"></i>正在生成题目…</div>
+    </div>
+  </main>
+
+  <footer class="dock">
+    <div class="tools">
+      <button class="tool" id="btnUndo">
+        <svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h9a6 6 0 010 12H9"/></svg>
+        <span>撤销</span>
+      </button>
+      <button class="tool" id="btnErase">
+        <svg viewBox="0 0 24 24"><path d="M4 20l4.5-4.5"/><path d="M14.5 4.5l5 5a2 2 0 010 2.8L13 19H7l-2.5-2.5a2 2 0 010-2.8L13 4.5a2 2 0 011.5 0z"/></svg>
+        <span>擦除</span>
+      </button>
+      <button class="tool" id="btnNotes">
+        <svg viewBox="0 0 24 24"><path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5z"/><path d="M16 13v6M13 16h6"/></svg>
+        <span>笔记</span>
+        <i class="badge" id="notesBadge">开</i>
+      </button>
+      <button class="tool" id="btnHint">
+        <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9c.4.3.5.7.5 1.1h6c0-.4.1-.8.5-1.1A6 6 0 0012 3z"/></svg>
+        <span>提示</span>
+      </button>
+    </div>
+
+    <div class="numpad" id="numpad"></div>
+  </footer>
+
+</div>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-grab"></div>
+  <h2 class="sheet-title">新游戏</h2>
+  <div class="diff-list" id="diffList"></div>
+  <div class="sheet-note">切换难度会开始一局新的对局，当前进度将被覆盖。</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
